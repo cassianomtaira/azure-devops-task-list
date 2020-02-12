@@ -1,0 +1,12 @@
+{
+  "name": "azure-devops",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bluebird": "^3.7.2",
+    "btoa": "^1.2.1",
+    "json-2-csv": "^3.5.9"
+  }
+}
