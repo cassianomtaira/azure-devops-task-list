@@ -41,6 +41,11 @@ doc-path@2.3.0:
   resolved "https://registry.yarnpkg.com/doc-path/-/doc-path-2.3.0.tgz#dd6321154ab1e33165bf5783a49ee67abcc02491"
   integrity sha512-RMZA8AXl0I78jI9odw0kFzOfQvBcCFLI6/ZtOs9PwogcL4DHc+sCUZQ34fkealJyqErJryYODVBOtO2IzU/CSw==
 
+dotenv@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
+  integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
+
 follow-redirects@^1.10.0:
   version "1.13.2"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.2.tgz#dd73c8effc12728ba5cf4259d760ea5fb83e3147"

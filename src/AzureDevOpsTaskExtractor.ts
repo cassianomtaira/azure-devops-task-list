@@ -3,15 +3,8 @@ import moment from 'moment';
 import converter = require('json-2-csv');
 import fs = require('fs');
 import btoa from 'btoa';
-
-export interface IAzureDevOpsTaskExtractor {
-  user: string;
-  personalToken: string;
-  projectsList: string[];
-  account: string;
-  defaultProject: string;
-  defaultTeam: string;
-}
+import { IConfigHelper } from './Helpers/ConfigHelper';
+import { ArrayUtils } from './Utils/ArrayUtils';
 
 export interface ICredentials {
   user: string;
@@ -21,14 +14,6 @@ export interface ICredentials {
 export interface IRange {
   start: string;
   end: string;
-}
-
-export class Utils {
-  static async asyncForEach(array: any[], callback: any) {
-    for (let index = 0; index < array.length; index++) {
-      await callback(array[index], index, array);
-    }
-  }
 }
 
 export class AzureDevOpsTaskExtractor {
@@ -50,7 +35,7 @@ export class AzureDevOpsTaskExtractor {
   private credentials: ICredentials;
   private dates: IRange;
 
-  constructor(config: IAzureDevOpsTaskExtractor, start?: string, end?: string) {
+  constructor(config: IConfigHelper, start?: string, end?: string) {
     this.projectsList = config.projectsList;
     this.account = config.account;
     this.defaultProject = config.defaultProject;
@@ -147,13 +132,13 @@ export class AzureDevOpsTaskExtractor {
   public async run() {
     console.log('1 - Iniciando');
 
-    if (this.projectsList === []) {
+    if (this.projectsList === null || this.projectsList.length === 0) {
       this.projectsList = await this.getOrganizationProjects();
     }
 
     let ids: number[] = [];
 
-    await Utils.asyncForEach(this.projectsList, async (team: string, index: number, array: string[]) => {
+    await ArrayUtils.asyncForEach(this.projectsList, async (team: string, index: number, array: string[]) => {
       console.log(`2 - Recuperando IDs de tarefas do projeto ${team} (${index + 1}/${array.length})`);
 
       ids = ids.concat(await this.getIds(team, this.queryClosedItens));
@@ -172,7 +157,7 @@ export class AzureDevOpsTaskExtractor {
 
     let workItems: any[] = [];
 
-    await Utils.asyncForEach(batches, async (batch: number[], index: number, array: string[]) => {
+    await ArrayUtils.asyncForEach(batches, async (batch: number[], index: number, array: string[]) => {
       console.log(`4 - Buscando WorkItems (${index + 1}/${array.length})`);
 
       workItems = workItems.concat(await this.getWorkItems(batch));
