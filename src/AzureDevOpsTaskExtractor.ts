@@ -182,7 +182,7 @@ export class AzureDevOpsTaskExtractor {
 
     let csv = await converter.json2csvAsync(workItems, { emptyFieldValue: '' });
 
-    const queryDateArray = this.dates.start.split('/');
+    const queryDateArray = this.dates.end.split('/');
     const fileName = `out/${queryDateArray[2]}.${queryDateArray[0]}_Tasks.csv`;
 
     fs.writeFileSync(fileName, csv, { encoding: 'latin1' });
