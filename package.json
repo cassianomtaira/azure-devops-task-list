@@ -9,7 +9,7 @@
     "btoa": "^1.2.1",
     "dotenv": "^8.2.0",
     "json-2-csv": "^3.5.9",
-    "moment": "^2.27.0"
+    "moment": "^2.29.4"
   },
   "devDependencies": {
     "@types/btoa": "^1.2.3",
